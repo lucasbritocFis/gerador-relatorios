@@ -138,8 +138,70 @@ def gerar_pdf(all_images, text, qa_data, logo_file, ass1_file, ass2_file):
     for i in range(min(3, len(all_images))):
         c.drawImage(all_images[i], 30 + i * 145, y_position - 280, width=160, height=100)
 
-    # Campos de Tratamento e QA
+    # Campos de Tratamento
     cabecalho = linhas[23:48] if len(linhas) > 47 else ["Não encontrado"] * 25
+    campos_tratamento = []
+    campo_atual = {}
+    for linha in linhas[102:]:
+        if "Físico(a)" in linha:
+            break
+        if linha.isdigit():
+            if campo_atual:
+                campos_tratamento.append(campo_atual)
+            campo_atual = {"Campo": linha}
+        elif linha != "-":
+            if "dados" not in campo_atual:
+                campo_atual["dados"] = []
+            campo_atual["dados"].append(linha)
+    if campo_atual:
+        campos_tratamento.append(campo_atual)
+
+    c.setFont("Helvetica", 7)
+    c.line(60, 390, 590, 390)
+    c.drawString(60, 377, "INFORMAÇÕES DOS CAMPOS DE TRATAMENTO - ")
+    c.drawString(230, 377, cabecalho[1].upper() + " EDGE_SN5253")
+    c.line(60, 370, 590, 370)
+
+    yc = 367
+    indices_pular = {1, 12, 13, 14, 15, 20, 21, 22}
+    for i, linha in enumerate(cabecalho):
+        if i in indices_pular:
+            continue
+        linha = linha.replace("Rot", "").replace("de", "")
+        if linha == "Tam. Campo":
+            linha = "X x Y (cm x cm)"
+        if linha in ["Y1", "X1", "X2", "Isocentro X", "Isocentro Y", "Isocentro Z", "SSD"]:
+            linha += " (cm)"
+        if linha == "(Pto Ref)Dose":
+            linha += " (cGy)"
+        c.drawString(60, yc - 12, linha)
+        yc -= 12
+
+    x_i = 130
+    y_i = 355
+    i = 1
+    for campo in campos_tratamento:
+        x = x_i + i
+        y = y_i
+        c.setFont("Helvetica", 7)
+        c.setFillColor(colors.black)
+        c.drawString(x, y, campo['Campo'])
+        for idx, dado in enumerate(campo['dados']):
+            if dado not in ["EDGE_SN5253", "Bólus"]:
+                texto_sem_cm = dado.replace("cm", "").replace("UM", "").replace("Y1:", "").replace("Y2:", "").replace("X1:", "").replace("X2:", "").replace("cGy", "").replace("SH", "Horário").replace("SAH", "Anti-Horário").strip()
+                if idx == len(campo['dados']) - 1:
+                    c.setFont("Helvetica-Bold", 7)
+                    c.setFillColor(colors.red)
+                else:
+                    c.setFont("Helvetica", 7)
+                    c.setFillColor(colors.black)
+                c.drawString(x, y - 12, texto_sem_cm)
+                y -= 12
+        i += 60
+
+    # QA
+    c.setFont("Helvetica", 7)
+    c.setFillColor(colors.black)
     c.line(60, 150, 590, 150)
     c.drawString(60, 137, "CONTROLE DE QUALIDADE - EQUIPAMENTO USADO: EPID, METODOLOGIA USADA: ANÁLISE GAMA")
     c.line(60, 130, 590, 130)
@@ -161,8 +223,6 @@ def gerar_pdf(all_images, text, qa_data, logo_file, ass1_file, ass2_file):
         novoresults = results.replace("aprovado", "Aprovado").strip()
         c.drawString(130 + a, 80, novoresults)
         a += 60
-        c.setFont("Helvetica", 7)
-        c.setFillColor(colors.black)
 
     # Assinaturas
     ass1_path = "ass1_temp.jpg"
@@ -176,6 +236,7 @@ def gerar_pdf(all_images, text, qa_data, logo_file, ass1_file, ass2_file):
     c.drawImage(ass2_path, 160, 12, width=100, height=50)
 
     c.setFont("Helvetica", 10)
+    c.setFillColor(colors.black)
     c.drawString(60, 20, "PLANEJADO POR:  ________________________    ")
     c.drawString(330, 20, "VERIFICADO POR:  _________________________  ")
 
