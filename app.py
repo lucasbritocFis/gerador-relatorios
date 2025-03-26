@@ -167,18 +167,14 @@ def gerar_pdf(all_images, text, qa_data, logo_file, ass1_file, ass2_file):
     for i, linha in enumerate(cabecalho):
         if i in indices_pular:
             continue
-        linha = linha.replace("Rot", "").replace("de", "")
+        linha = linha.replace("Rot", "").replace("de", "").strip()  # Remove espaços extras
         if linha == "Tam. Campo":
             linha = "X x Y (cm x cm)"
         if linha in ["Y1", "X1", "X2", "Isocentro X", "Isocentro Y", "Isocentro Z", "SSD"]:
             linha += " (cm)"
         if linha == "(Pto Ref)Dose":
             linha += " (cGy)"
-        # Ajuste de alinhamento para Gantry, Colimador e Mesa
-        if linha in [" Gantry", " Colimador", " Mesa", " Sentido"]:
-            c.drawString(58, yc - 12, linha.strip())  # Alinhamento ajustado para 58
-        else:
-            c.drawString(60, yc - 12, linha)
+        c.drawString(60, yc - 12, linha)  # Alinhamento consistente em 60 para todas as linhas
         yc -= 12
 
     x_i = 130
