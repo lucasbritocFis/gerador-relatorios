@@ -174,7 +174,11 @@ def gerar_pdf(all_images, text, qa_data, logo_file, ass1_file, ass2_file):
             linha += " (cm)"
         if linha == "(Pto Ref)Dose":
             linha += " (cGy)"
-        c.drawString(60, yc - 12, linha)
+        # Ajuste de alinhamento para Gantry, Colimador e Mesa
+        if linha in [" Gantry", " Colimador", " Mesa", " Sentido"]:
+            c.drawString(58, yc - 12, linha.strip())  # Alinhamento ajustado para 58
+        else:
+            c.drawString(60, yc - 12, linha)
         yc -= 12
 
     x_i = 130
@@ -212,6 +216,8 @@ def gerar_pdf(all_images, text, qa_data, logo_file, ass1_file, ass2_file):
     c.drawString(60, 80, "Resultado")
     a = 1
     for i in range(len(qa_data["campos_qa"])):
+        c.setFont("Helvetica", 7)
+        c.setFillColor(colors.black)
         cam = qa_data["campos_qa"][i].replace("Campo", "")
         c.drawString(128 + a, 120, cam)
         c.drawString(130 + a, 110, f"{qa_data['gama_dta_valores'][i][1]} % / {qa_data['gama_dta_valores'][i][0]} mm")
@@ -222,6 +228,7 @@ def gerar_pdf(all_images, text, qa_data, logo_file, ass1_file, ass2_file):
         results = qa_data["resultados_analise"][i].strip().lower()
         novoresults = results.replace("aprovado", "Aprovado").strip()
         c.drawString(130 + a, 80, novoresults)
+        c.setFillColor(colors.black)  # Redefine a cor para preto após o Resultado
         a += 60
 
     # Assinaturas
