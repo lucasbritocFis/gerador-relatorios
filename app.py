@@ -254,11 +254,11 @@ st.title("🩺 Gerador de Relatórios de Tratamento")
 st.markdown("Carregue os PDFs e imagens para gerar o relatório unificado.")
 
 # Upload dos arquivos
-uploaded_rel = st.file_uploader("PDF de Relatório de Tratamento (REP REL)", type="pdf")
-uploaded_qa = st.file_uploader("PDF de Controle de Qualidade (REP CQ)", type="pdf")
+uploaded_rel = st.file_uploader("PDF de Relatório de Tratamento", type="pdf")
+uploaded_qa = st.file_uploader("PDF de Controle de Qualidade", type="pdf")
 uploaded_logo = st.file_uploader("Logo Dasa Oncologia", type=["png", "jpg"])
-uploaded_ass1 = st.file_uploader("Assinatura Guilherme", type=["jpg"])
-uploaded_ass2 = st.file_uploader("Assinatura Lucas", type=["jpg"])
+uploaded_ass1 = st.file_uploader("Assinatura Segundo Físico", type=["jpg"])
+uploaded_ass2 = st.file_uploader("Assinatura Físico Planejador", type=["jpg"])
 
 if st.button("Gerar Relatório"):
     if uploaded_rel and uploaded_qa and uploaded_logo and uploaded_ass1 and uploaded_ass2:
