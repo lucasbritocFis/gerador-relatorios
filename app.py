@@ -269,10 +269,9 @@ st.markdown(f"[Abrir Tasy]({tasy_url})", unsafe_allow_html=True)
 
 # Caminho da planilha
 st.markdown("### 📊 Acessar Planilha no Compartilhamento")
-st.markdown(
-    "Abra manualmente a planilha no caminho de rede abaixo (copie e cole no Explorador de Arquivos):\n\n"
-    r"\\10.50.90.18\Radioterapia\PORTAL-RADIOTERAPIA.xlsb"
-)
+planilha_url = "\\10.50.90.18\Radioterapia\PORTAL - RADIOTERAPIA.xlsb"
+st.markdown(f"[Download Portal Radioterapia]({planilha_url})", unsafe_allow_html=True)
+
 
 # Estilo do botão
 st.markdown("<style>.stButton>button {background-color: #4CAF50; color: white; border-radius: 10px;}</style>", unsafe_allow_html=True)
