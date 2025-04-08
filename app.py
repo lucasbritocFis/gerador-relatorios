@@ -252,7 +252,7 @@ def gerar_pdf(all_images, text, qa_data, logo_file, ass1_file, ass2_file):
 
 # Interface Streamlit
 st.set_page_config(page_title="Gerador de Relatórios", layout="wide", page_icon="🩺")
-st.set_page_config(page_title="Portal Interno", layout="centered")
+#st.set_page_config(page_title="Portal Interno", layout="centered")
 st.title("🖥️ Acesso Rápido - Portal Interno")
 
 # Citrix
