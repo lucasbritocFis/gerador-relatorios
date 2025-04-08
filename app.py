@@ -268,16 +268,11 @@ tasy_url = "https://tasyprd.adhosp.com.br/#/login"
 st.markdown(f"[Abrir Tasy]({tasy_url})", unsafe_allow_html=True)
 
 # Caminho da planilha
-planilha_path = r"file://10.50.90.18/Radioterapia/PORTAL-RADIOTERAPIA.xlsb"
-
-# Link clicável para abrir a planilha
-st.markdown(f"""
-    <a href="{planilha_path}" target="_blank" style='text-decoration:none;'>
-        <button style='padding:10px 20px; font-size:16px; background-color:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;'>
-            Abrir Planilha Excel
-        </button>
-    </a>
-""", unsafe_allow_html=True)
+st.markdown("### 📊 Acessar Planilha no Compartilhamento")
+st.markdown(
+    "Abra manualmente a planilha no caminho de rede abaixo (copie e cole no Explorador de Arquivos):\n\n"
+    r"\\10.50.90.18\Radioterapia\PORTAL-RADIOTERAPIA.xlsb"
+)
 
 # Estilo do botão
 st.markdown("<style>.stButton>button {background-color: #4CAF50; color: white; border-radius: 10px;}</style>", unsafe_allow_html=True)
