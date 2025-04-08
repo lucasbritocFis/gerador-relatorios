@@ -9,18 +9,6 @@ from datetime import datetime
 import pdfplumber
 from reportlab.lib import colors
 
-st.set_page_config(page_title="Portal Interno", layout="centered")
-st.title("🖥️ Acesso Rápido - Portal Interno")
-
-# Citrix
-st.markdown("### 💻 Abrir Citrix StoreWeb")
-citrix_url = "http://bronbsv004app.adhosp.com.br/Citrix/StoreWeb/"
-st.markdown(f"[Abrir Citrix]({citrix_url})", unsafe_allow_html=True)
-
-# Tasy
-st.markdown("### 💻 Abrir Tasy")
-tasy_url = "https://tasyprd.adhosp.com.br/#/login"
-st.markdown(f"[Abrir Tasy]({tasy_url})", unsafe_allow_html=True)
 
 
 
@@ -264,6 +252,20 @@ def gerar_pdf(all_images, text, qa_data, logo_file, ass1_file, ass2_file):
 
 # Interface Streamlit
 st.set_page_config(page_title="Gerador de Relatórios", layout="wide", page_icon="🩺")
+st.set_page_config(page_title="Portal Interno", layout="centered")
+st.title("🖥️ Acesso Rápido - Portal Interno")
+
+# Citrix
+st.markdown("### 💻 Abrir Citrix StoreWeb")
+citrix_url = "http://bronbsv004app.adhosp.com.br/Citrix/StoreWeb/"
+st.markdown(f"[Abrir Citrix]({citrix_url})", unsafe_allow_html=True)
+
+# Tasy
+st.markdown("### 💻 Abrir Tasy")
+tasy_url = "https://tasyprd.adhosp.com.br/#/login"
+st.markdown(f"[Abrir Tasy]({tasy_url})", unsafe_allow_html=True)
+
+
 st.markdown("<style>.stButton>button {background-color: #4CAF50; color: white; border-radius: 10px;}</style>", unsafe_allow_html=True)
 st.title("🩺 Gerador de Relatórios de Tratamento")
 st.markdown("Carregue os PDFs e imagens para gerar o relatório unificado.")
