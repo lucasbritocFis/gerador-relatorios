@@ -270,7 +270,7 @@ st.markdown(f"[Abrir Tasy]({tasy_url})", unsafe_allow_html=True)
 # Caminho da planilha
 st.markdown("### 📊 Acessar Planilha no Compartilhamento")
 
-planilha_url = "http://10.50.90.18/Radioterapia/PORTAL-RADIOTERAPIA.xlsb"
+planilha_url = "http://10.50.90.18/Radioterapia/PORTAL - RADIOTERAPIA.xlsb"
 
 st.markdown(f"""
     <a href="{planilha_url}" target="_blank" style='text-decoration:none;'>
