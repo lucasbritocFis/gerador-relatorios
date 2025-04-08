@@ -27,14 +27,7 @@ st.markdown("### 📊 Abrir Planilha Excel (rede interna)")
 # Caminho da planilha (use \\ para Windows ou / para Linux se necessário)
 planilha_path = r"file://10.50.90.18/Radioterapia/PORTAL-RADIOTERAPIA.xlsb"
 
-# Link clicável para abrir a planilha
-st.markdown(f"""
-    <a href="{planilha_path}" target="_blank" style='text-decoration:none;'>
-        <button style='padding:10px 20px; font-size:16px; background-color:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;'>
-            Abrir Planilha Excel
-        </button>
-    </a>
-""", unsafe_allow_html=True)
+
 
 # Função para extrair imagens e texto do PDF de Relatório de Tratamento
 def extrair_imagens_e_texto(pdf_file):
